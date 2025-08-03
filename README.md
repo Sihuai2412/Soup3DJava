@@ -4,6 +4,9 @@
 [Python版本仓库](https://github.com/OpenSoup/soup3D)
 
 ## 安装
+[![](https://jitpack.io/v/Sihuai2412/Soup3DJava.svg)](https://jitpack.io/#Sihuai2412/Soup3DJava)
+
+
 Maven:  
 ```xml
 <repositories>
