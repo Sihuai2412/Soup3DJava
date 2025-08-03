@@ -4,8 +4,34 @@
 [Python版本仓库](https://github.com/OpenSoup/soup3D)
 
 ## 安装
-暂无
+Maven:  
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+<dependency>
+    <groupId>com.github.Sihuai2412</groupId>
+    <artifactId>Soup3DJava</artifactId>
+    <version>[这里填入版本号如v1.0.1]</version>
+</dependency>
+```
 
+Gradle:
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+dependencies {
+    implementation 'com.github.Sihuai2412:Soup3DJava:[这里填入版本号如v1.0.1]'
+}
+```
 ## 小试牛刀
 
 安装完成后，您可以试试这段代码：
