@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 
 public class ShaderUtils {
+    /**
+     * 将图片转换为OpenGL图片
+     */
     public static int imgToTexture(BufferedImage img, int textureId, int textureUnit) {
         GL13.glActiveTexture(GL13.GL_TEXTURE0 + textureUnit);
         img = asRGBA(img);
@@ -32,6 +35,11 @@ public class ShaderUtils {
         return textureId;
     }
 
+    /**
+     * 将图片转为RGBA
+     * @param image 图片
+     * @return RGBA图片
+     */
     public static BufferedImage asRGBA(BufferedImage image) {
         if (image.getType() == BufferedImage.TYPE_4BYTE_ABGR) {
             return image;
@@ -50,6 +58,11 @@ public class ShaderUtils {
         return rgbaImage;
     }
 
+    /**
+     * 将图片转为RGBA图片字节
+     * @param img 图片
+     * @return 图片字节
+     */
     public static ByteBuffer bufferedImageToRGBA(BufferedImage img) {
         int width = img.getWidth();
         int height = img.getHeight();

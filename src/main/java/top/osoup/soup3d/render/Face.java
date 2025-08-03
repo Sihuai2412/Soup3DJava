@@ -13,6 +13,13 @@ public class Face {
     public final List<Vec5> vertex;
     public final Vec3 normal;
 
+    /**
+     * 构造方法
+     * @param mode 渲染模式，填入Face.ShapeType中的常量或OpenGL常量
+     * @see ShapeType
+     * @param surface 纹理
+     * @param vertex 顶点列表
+     */
     public Face(int mode, FPL surface, List<Vec5> vertex) {
         this.mode = mode;
         this.surface = surface;

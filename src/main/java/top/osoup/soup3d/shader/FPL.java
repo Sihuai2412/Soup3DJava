@@ -10,10 +10,19 @@ public class FPL {
     public int baseColorId;
     private int hash;
 
+    /**
+     * 构造方法
+     * @param baseColor 纹理
+     */
     public FPL(IBaseColor baseColor) {
         this(baseColor, 0);
     }
 
+    /**
+     * 构造方法
+     * @param baseColor 纹理
+     * @param emission 发光度
+     */
     public FPL(IBaseColor baseColor, float emission) {
         if (baseColor == null) {
             throw new IllegalArgumentException("baseColor cannot be null");
@@ -26,28 +35,11 @@ public class FPL {
         update();
     }
 
-    public void update() {
+    /**
+     * 更新
+     */
+    private void update() {
         BufferedImage img = baseColor.getPic();
         this.baseColorId = ShaderUtils.imgToTexture(img, 0, 0);
-    }
-
-    public IBaseColor getBaseColor() {
-        return baseColor;
-    }
-
-    public float getEmission() {
-        return emission;
-    }
-
-    public int getBaseColorId() {
-        return baseColorId;
-    }
-
-    public int getHash() {
-        return hash;
-    }
-
-    public void setHash(int hash) {
-        this.hash = hash;
     }
 }

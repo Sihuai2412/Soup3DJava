@@ -9,6 +9,11 @@ public class Channel {
     public BufferedImage channelImage;
     private int hash;
 
+    /**
+     * 构造方法
+     * @param texture 纹理
+     * @param channelId 通道ID
+     */
     public Channel(IBaseColor texture, int channelId) {
         this.texture = texture;
         this.channelId = channelId;
@@ -17,6 +22,10 @@ public class Channel {
         update();
     }
 
+    /**
+     * 获取通道图片
+     * @return 通道图片
+     */
     public BufferedImage getChannelImage() {
         BufferedImage img = texture.getPic();
         int width = img.getWidth();
@@ -37,7 +46,10 @@ public class Channel {
         return image;
     }
 
-    public void update() {
+    /**
+     * 更新
+     */
+    private void update() {
         getChannelImage();
     }
 }

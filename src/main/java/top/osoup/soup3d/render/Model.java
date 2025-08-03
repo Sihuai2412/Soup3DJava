@@ -41,6 +41,13 @@ public class Model {
     public float height;
     public float length;
 
+    /**
+     * 构造方法
+     * @param x 模型坐标
+     * @param y 模型坐标
+     * @param z 模型坐标
+     * @param faces 面
+     */
     public Model(float x, float y, float z, Face... faces) {
         this.x = x;
         this.y = y;
@@ -60,11 +67,17 @@ public class Model {
         _generate_display_list();
     }
 
+    /**
+     * 向渲染队列添加模型
+     */
     public void paint() {
         Soup3D.renderQueue.add(this);
     }
 
-    public void _generate_display_list() {
+    /**
+     * 内部方法
+     */
+    private void _generate_display_list() {
         GL11.glNewList(listId, GL11.GL_COMPILE);
         for (Face face : faces) {
             int textureId = face.surface.baseColorId;
@@ -104,26 +117,50 @@ public class Model {
         GL11.glEndList();
     }
 
+    /**
+     * 显示模型
+     */
     public void show() {
         stableShapes.add(this);
     }
 
+    /**
+     * 隐藏模型
+     */
     public void hide() {
         stableShapes.remove(this);
     }
 
+    /**
+     * 设置模型坐标
+     * @param x 模型坐标
+     * @param y 模型坐标
+     * @param z 模型坐标
+     */
     public void goTo(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
+    /**
+     * 设置模型旋转
+     * @param yaw 模型旋转
+     * @param pitch 模型旋转
+     * @param roll 模型旋转
+     */
     public void turn(float yaw, float pitch, float roll) {
         this.yaw = yaw;
         this.pitch = pitch;
         this.roll = roll;
     }
 
+    /**
+     * 设置模型大小
+     * @param width 模型大小
+     * @param height 模型大小
+     * @param length 模型大小
+     */
     public void size(float width, float height, float length) {
         this.width = width;
         this.height = height;

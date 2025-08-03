@@ -33,6 +33,14 @@ public final class Soup3D {
 
     public static List<Model> renderQueue = new ArrayList<>();
 
+    /**
+     * 构造方法
+     * @param width 宽
+     * @param height 高
+     * @param fov 视野
+     * @param bgColor 背景色
+     * @param far 最远渲染距离
+     */
     public Soup3D(int width, int height, float fov, SoupColor bgColor, float far) {
         this.fov = fov;
         this.far = far;
@@ -70,6 +78,9 @@ public final class Soup3D {
         });
     }
 
+    /**
+     * 内部方法
+     */
     private void onChangeWindow(int _width, int _height) {
         GL11.glViewport(0, 0, _width, _height);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -81,12 +92,18 @@ public final class Soup3D {
         GL11.glTranslatef(0.0f, 0.0f, -5.0f);
     }
 
-    public static void gluPerspective(float fovY, float aspect, float zNear, float zFar) {
+    /**
+     * 内部方法
+     */
+    private static void gluPerspective(float fovY, float aspect, float zNear, float zFar) {
         float fH = (float) Math.tan(Math.toRadians(fovY) / 2) * zNear;
         float fW = fH * aspect;
         GL11.glFrustum(-fW, fW, -fH, fH, zNear, zFar);
     }
 
+    /**
+     * 启动
+     */
     public void run() {
         while (!shouldClose) {
             if (GLFW.glfwWindowShouldClose(window)) {
@@ -108,6 +125,9 @@ public final class Soup3D {
     }
 
 
+    /**
+     * 内部更新
+     */
     private void update() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         for (Model shape : Model.stableShapes) {
@@ -146,14 +166,27 @@ public final class Soup3D {
         GLFW.glfwPollEvents();
     }
 
+    /**
+     * 重新设置窗口大小
+     * @param width 宽
+     * @param height 高
+     */
     public void resize(int width, int height) {
         GLFW.glfwSetWindowSize(window, width, height);
     }
 
+    /**
+     * 设置标题
+     * @param title 标题
+     */
     public void setTitle(String title) {
         GLFW.glfwSetWindowTitle(window, title);
     }
 
+    /**
+     * 设置图标
+     * @param path 图片路径
+     */
     public void setIcon(String path) {
         try (MemoryStack stack = MemoryStack.stackPush()) {
             IntBuffer w = stack.mallocInt(1);
@@ -178,6 +211,12 @@ public final class Soup3D {
         }
     }
 
+    /**
+     * 设置背景颜色
+     * @param r 红色
+     * @param g 绿色
+     * @param b 蓝色
+     */
     public void setBackgroundColor(float r, float g, float b) {
         GL11.glClearColor(r, g, b, 1.0f);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
@@ -185,30 +224,50 @@ public final class Soup3D {
 
     /////////////////////////////////////////////////
 
+    /**
+     * 关闭窗口
+     */
     public void close() {
         this.shouldClose = true;
     }
 
+    /**
+     * 获取窗口
+     * @return 窗口(long)
+     */
     public long getWindow() {
         return window;
     }
 
+    /**
+     * 获取日志实例
+     * @return 日志
+     */
     public Logger getLogger() {
         return logger;
     }
 
-    public void setLogger(Logger logger) {
-        this.logger = logger;
-    }
-
+    /**
+     * 获取所有更新方法
+     * @return 所有更新方法
+     */
     public Map<Long, UpdateFunction> getUpdateFunctions() {
         return updateFunctions;
     }
 
+    /**
+     * 添加更新方法
+     * @param id 作为标识符，建议使用字符串+hash
+     * @param updateFunction 更新方法
+     */
     public void putUpdateFunction(long id, UpdateFunction updateFunction) {
         this.updateFunctions.put(id, updateFunction);
     }
 
+    /**
+     * 移除更新方法
+     * @param id 更新方法ID
+     */
     public void removeUpdateFunction(long id) {
         this.updateFunctions.remove(id);
     }

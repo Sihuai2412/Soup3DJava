@@ -19,11 +19,28 @@ public class MixChannel implements IBaseColor {
 
     private int hash;
 
+    /**
+     * 构造方法
+     * @param width 宽
+     * @param height 高
+     * @param R 红色值，实际类型为float或Channel，如果为float则在0-1之间
+     * @param G 绿色值，实际类型为float或Channel，如果为float则在0-1之间
+     * @param B 蓝色值，实际类型为float或Channel，如果为float则在0-1之间
+     */
     public MixChannel(int width, int height,
                       Object R, Object G, Object B) {
         this(width, height, R, G, B, 1);
     }
 
+    /**
+     * 构造方法
+     * @param width 宽
+     * @param height 高
+     * @param R 红色值，实际类型为float或Channel，如果为float则在0-1之间
+     * @param G 绿色值，实际类型为float或Channel，如果为float则在0-1之间
+     * @param B 蓝色值，实际类型为float或Channel，如果为float则在0-1之间
+     * @param A 透明度，实际类型为float或Channel，如果为float则在0-1之间
+     */
     public MixChannel(int width, int height,
                       Object R, Object G, Object B, Object A) {
 
@@ -46,7 +63,10 @@ public class MixChannel implements IBaseColor {
         update();
     }
 
-    public void update() {
+    /**
+     * 更新
+     */
+    private void update() {
         BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g = result.createGraphics();
 
@@ -74,6 +94,18 @@ public class MixChannel implements IBaseColor {
         this.img = result;
     }
 
+    /**
+     * 根据不同类型的输入源生成灰度BufferedImage。
+     * 输出图像始终为指定尺寸(width × height)且类型为BufferedImage.TYPE_BYTE_GRAY。
+     *
+     * @param source 输入源，支持以下类型：
+     *               <ul>
+     *                 <li>Number类型：生成纯色灰度图，数值转换为0-255的灰度值</li>
+     *                 <li>Channel类型：获取通道图像并缩放到目标尺寸</li>
+     *                 <li>其他类型：生成全白(255)灰度图</li>
+     *               </ul>
+     * @return 生成的灰度图像，尺寸为width × height
+     */
     private BufferedImage getChannelImage(Object source) {
         if (source instanceof Number) {
             int val = Math.min(255, Math.max(0, (int)(((Number)source).floatValue() * 255f)));
@@ -107,6 +139,9 @@ public class MixChannel implements IBaseColor {
         }
     }
 
+    /**
+     * 内部方法
+     */
     private int getGrayValue(BufferedImage img, int x, int y) {
         if (img == null) return 128;
         return img.getRaster().getSample(x, y, 0);
