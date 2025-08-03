@@ -16,7 +16,9 @@ import top.osoup.soup3d.utils.UpdateFunction;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -26,7 +28,7 @@ public final class Soup3D {
     private Logger logger;
     private GLFWErrorCallback errorCallback;
     private long window;
-    private UpdateFunction updateFunction;
+    private Map<Long, UpdateFunction> updateFunctions = new HashMap<>();
     private boolean shouldClose = false;
 
     public static List<Model> renderQueue = new ArrayList<>();
@@ -92,8 +94,10 @@ public final class Soup3D {
                 break;
             }
             this.update();
-            if (this.updateFunction != null) {
-                updateFunction.update(this);
+            if (this.updateFunctions != null && !this.updateFunctions.isEmpty()) {
+                updateFunctions.values().forEach(u -> {
+                    u.update(this);
+                });
             }
         }
 
@@ -197,11 +201,15 @@ public final class Soup3D {
         this.logger = logger;
     }
 
-    public UpdateFunction getUpdateFunction() {
-        return updateFunction;
+    public Map<Long, UpdateFunction> getUpdateFunctions() {
+        return updateFunctions;
     }
 
-    public void setUpdateFunction(UpdateFunction updateFunction) {
-        this.updateFunction = updateFunction;
+    public void putUpdateFunction(long id, UpdateFunction updateFunction) {
+        this.updateFunctions.put(id, updateFunction);
+    }
+
+    public void removeUpdateFunction(long id) {
+        this.updateFunctions.remove(id);
     }
 }

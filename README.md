@@ -68,7 +68,7 @@ public class Main {
 
         Model cube = new Model(0, 0, 0, faces.toArray(new Face[0]));   // 定义模型
         cube.show(); // 显示
-        soup3D.setUpdateFunction((s) -> cube.turn(cube.yaw + 0.1f, cube.pitch + 0.1f, cube.roll));  // 设置更新方法，每次更新都会被调用
+        soup3D.putUpdateFunction("cube".hashCode(), (s) -> cube.turn(cube.yaw + 0.1f, cube.pitch + 0.1f, cube.roll));  // 添加更新方法，每次更新都会被调用，需要填入id以便移除，建议使用字符串hash
         soup3D.run();  // 启动，必须放在最后
     }
 }
