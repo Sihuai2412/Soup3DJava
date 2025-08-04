@@ -58,7 +58,7 @@ public class Main {
         FPL blue = new FPL(new MixChannel(1, 1, 0, 0, 1));
         List<Face> faces = new ArrayList<>();
 
-        Vec5[] vertices = {  // 定义定点
+        Vec5[] vertices = {  // 定义顶点
                 new Vec5(-0.5f, -0.5f, -0.5f, 0, 0), // 0
                 new Vec5( 0.5f, -0.5f, -0.5f, 0, 0), // 1
                 new Vec5( 0.5f,  0.5f, -0.5f, 0, 0), // 2
