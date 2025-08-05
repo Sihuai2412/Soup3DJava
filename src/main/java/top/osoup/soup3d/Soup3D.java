@@ -9,8 +9,9 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
+import top.osoup.soup3d.render.Camera;
 import top.osoup.soup3d.render.Model;
-import top.osoup.soup3d.utils.SoupColor;
+import top.osoup.soup3d.utils.color.SoupColor;
 import top.osoup.soup3d.utils.UpdateFunction;
 
 import java.nio.ByteBuffer;
@@ -76,6 +77,8 @@ public final class Soup3D {
         GLFW.glfwSetWindowSizeCallback(window, (wd, _width, _height) -> {
             onChangeWindow(_width, _height);
         });
+
+        Camera.getInstance().goTo(0, 0, 5);
     }
 
     /**

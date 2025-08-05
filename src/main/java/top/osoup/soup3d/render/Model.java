@@ -3,7 +3,7 @@ package top.osoup.soup3d.render;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import top.osoup.soup3d.Soup3D;
-import top.osoup.soup3d.utils.Vec5;
+import top.osoup.soup3d.utils.math.Vec5;
 
 import java.util.Arrays;
 import java.util.HashSet;

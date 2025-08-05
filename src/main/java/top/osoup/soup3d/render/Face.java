@@ -2,8 +2,8 @@ package top.osoup.soup3d.render;
 
 import org.lwjgl.opengl.GL11;
 import top.osoup.soup3d.shader.FPL;
-import top.osoup.soup3d.utils.Vec3;
-import top.osoup.soup3d.utils.Vec5;
+import top.osoup.soup3d.utils.math.Vec3;
+import top.osoup.soup3d.utils.math.Vec5;
 
 import java.util.List;
 

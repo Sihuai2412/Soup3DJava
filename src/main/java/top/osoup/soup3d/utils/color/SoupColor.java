@@ -1,4 +1,4 @@
-package top.osoup.soup3d.utils;
+package top.osoup.soup3d.utils.color;
 
 import java.util.Objects;
 
